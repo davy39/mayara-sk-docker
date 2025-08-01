@@ -20,7 +20,7 @@ RUN git clone https://github.com/keesverruijt/mayara.git && \
     cargo build --release
 RUN git clone https://github.com/wdantuma/signalk-radar.git && \
     cd signalk-radar/signalk-radar-plugin && \
-    npm i && npm run build &&
+    npm i && npm run build
 FROM node:20-alpine
 WORKDIR /app
 COPY signalk signalk
