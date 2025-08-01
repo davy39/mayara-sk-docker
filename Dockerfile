@@ -18,6 +18,9 @@ RUN git clone https://github.com/keesverruijt/mayara.git && \
     cd mayara && \
     . "$HOME/.cargo/env" && \
     cargo build --release
+RUN git clone https://github.com/wdantuma/signalk-radar.git && \
+    cd signalk-radar/signalk-radar-plugin && \
+    npm i && npm run build &&
 FROM node:20-alpine
 WORKDIR /app
 COPY signalk signalk
@@ -25,7 +28,7 @@ COPY start.sh .
 RUN chmod +x start.sh
 COPY --from=build /src/signalk-server /app/signalk-server
 COPY --from=build /src/freeboard-sk/public /app/signalk-server/node_modules/@signalk/freeboard-sk/public
-COPY --from=build /src/mayara/target/release/mayara /app/mayara
+COPY --from=build /src/mayara/target/release/mayara-server /app/mayara
 RUN cd signalk && \
     npm i @signalk/charts-plugin
 COPY --from=build /src/signalk-radar/signalk-radar-plugin /app/signalk/node_modules/signalk-radar-plugin
