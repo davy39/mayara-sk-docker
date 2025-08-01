@@ -13,7 +13,7 @@ RUN git clone --branch radar-support https://github.com/wdantuma/freeboard-sk.gi
     cd freeboard-sk && \
     sed -ri 's/"declaration"/"skipLibCheck": true,\n"declaration"/' tsconfig.json && \
     npm i && \
-    NG_CLI_ANALYTICS=ci npm run build:prod
+    NG_CLI_ANALYTICS=ci npm run build
 RUN git clone https://github.com/keesverruijt/mayara.git && \
     cd mayara && \
     . "$HOME/.cargo/env" && \
