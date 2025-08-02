@@ -8,8 +8,10 @@ RUN curl -sSf https://sh.rustup.rs | bash -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-COPY work work
-RUN cd work && cargo build --release
+RUN git clone https://github.com/keesverruijt/mayara.git && \
+    cd mayara && \
+    . "$HOME/.cargo/env" && \
+    cargo build --release
 
 FROM wdantuma/signalk-radar-demo:latest
 
