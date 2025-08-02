@@ -1,0 +1,15 @@
+services:
+  mayara-radar:
+    image: davy39/mayara-signalk-radar:latest
+    container_name: mayara-signalk-radar
+    
+    # This is the key to sharing eth0 and the host's network stack
+    network_mode: "host" 
+    
+    environment:
+      - MAYARA_INTERFACE=eth0 # Network interface of the radar (default lo)
+      - MAYARA_PORT=3002 # Mayara port (default 3002) 
+      - HOST=192.168.1.33 # SignalK-server domain name or IP
+      
+    # Automatically restart the container if it stops
+    restart: unless-stopped
