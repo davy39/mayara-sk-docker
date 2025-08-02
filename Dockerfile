@@ -23,6 +23,6 @@ COPY start.sh .
 RUN chmod +x start.sh
 RUN rm -rf mayara || :
 
-COPY --from=build /src/work/target/release/mayara-server /app/mayara
+COPY --from=build /src/mayara/target/release/mayara-server /app/mayara
 
 CMD [ "/app/start.sh"]
